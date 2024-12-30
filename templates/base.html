@@ -1,0 +1,279 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+  <title>Tenant Dashboard</title>
+    
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #007BFF;
+        padding: 15px;
+        color: white;
+        flex-wrap: wrap;
+    }
+
+    .navbar-brand img {
+        height: 40px;
+    }
+
+    .navbar-links {
+        display: flex;
+        gap: 20px;
+        transition: max-height 0.3s ease;
+    }
+
+    .navbar-links a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .profile-dropdown {
+        position: relative;
+    }
+
+    .profile-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .profile-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: white;
+        border: 1px solid #ddd;
+        list-style-type: none;
+        padding: 10px;
+        z-index: 1000;
+        width: 150px; /* Fixed width for consistency */
+    }
+
+    .profile-menu li {
+        padding: 5px 10px;
+    }
+
+    .profile-menu li a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    main {
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    .section {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #007BFF;
+        color: white;
+    }
+
+    .button {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .maintenance-request {
+        margin-top: 20px;
+    }
+
+    .request-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .request-form input, .request-form textarea {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    /* Hamburger Menu Styles */
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+    }
+
+    .hamburger div {
+        height: 5px;
+        width: 100%;
+        background-color: white;
+        transition: 0.4s;
+    }
+
+    /* Media Query for Small Screens */
+    @media (max-width: 768px) {
+        .navbar-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            padding: 10px;
+            position: absolute;
+            top: 60px; /* Adjust based on navbar height */
+            left: 0;
+            right: 0;
+        }
+
+        .navbar-links.active {
+            display: flex;
+        }
+
+        .profile-avatar {
+            width: 35px;
+            height: 35px;
+        }
+
+        .hamburger {
+            display: flex;
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            font-size: 14px;
+        }
+
+        .navbar-brand img {
+            height: 30px;
+        }
+
+        .navbar-links a {
+            padding: 8px;
+        }
+
+        .profile-avatar {
+            width: 30px;
+            height: 30px;
+        }
+
+        .request-form input,
+        .request-form textarea {
+            font-size: 14px;
+            padding: 8px;
+        }
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <img src="{% static 'photos/images_1.jpeg' %}" alt="Logo" style="border-radius: 50%">
+    </div>
+    <div class="hamburger" onclick="toggleNavbar()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="navbar-links" id="navbarLinks">
+      <a href="{% url 'tenant_dashboard' %}">Lease Agreements</a>
+      <a href="{% url 'select_receiver_tenant' %}">Message</a>
+      <a href="{% url 'tenant_view_requests' %}">Maintenance Requests</a>
+     
+    </div>
+    <div class="profile-dropdown">
+      <img class="profile-avatar" src="{% static 'photos/images.jpeg' %}" alt="Profile" onclick="toggleMenu()">
+      <ul class="profile-menu">
+        <li><a href="{% url 'profile' %}">My Profile</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="{% url 'login' %}">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="container">
+    {% block content %}
+    {% endblock %}
+  </section>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.profile-menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function(event) {
+      const menu = document.querySelector('.profile-menu');
+      if (!menu.contains(event.target) && !event.target.matches('.profile-avatar')) {
+        menu.style.display = 'none';
+      }
+    });
+
+    function toggleNavbar() {
+      const navbarLinks = document.getElementById('navbarLinks');
+      navbarLinks.classList.toggle('active');
+    }
+
+    // Close navbar if clicked outside
+    document.addEventListener('click', function(event) {
+      const navbarLinks = document.getElementById('navbarLinks');
+      const hamburgerMenu = document.querySelector('.hamburger');
+      if (!navbarLinks.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+        navbarLinks.classList.remove('active');
+      }
+    });
+  </script>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
+
+<!-- Include FullCalendar JS -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+
+
+</body>
+</html>

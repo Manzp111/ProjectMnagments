@@ -1,0 +1,115 @@
+﻿{% load static %}
+<!Doctype html>
+<html lang="en">
+<head>
+    <title>sign  up</title>
+    <link rel="stylesheet" href="{% static 'css/signUp.css' %}" >
+</head>
+<body>
+<section class="topnav">
+  <div class="logo">
+    <a href="{% url 'Property' %}"><img src="{% static 'photos/images_1.jpeg' %}" class="img1" style="border-radius: 50%"></a>  <!-- Replace 'MySite' with your logo or site name -->
+  </div>
+  <div class="menu">
+    <a href="{% url 'Property' %}" class="nav-link">Home</a>
+    <a href="{% url 'about' %}" class="nav-link">About</a>
+    <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+  </div>
+  <div class="auth">
+    <a href="{% url 'login' %}" class="btn btn-primary">Log in</a>
+      <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+  </div>
+</section>
+    <section class="body">
+    <section class="container">
+		  <div class="header">
+			<h2>Create Account</h2>
+			
+		</div>
+		<form id="form" class="form" method="post">
+            {% csrf_token %}
+
+			<div class="form-control">
+			
+				<label for="firstNmae">First Name</label>
+
+				<input type="text" id="firstNmae" name="first_name"/>
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+
+				<small>Error message</small>
+			</div>
+			<div class="form-control">
+			
+				<label for="lastName">Last Name</label>
+
+				<input type="text" id="lastName"  name="last_name" />
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+
+				<small>Error message</small>
+			</div>
+			<div class="form-control">
+			
+				<label for="username">User Name</label>
+
+				<input type="text"  id="username"  name="username" />
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+
+				<small>Error message</small>
+			</div>
+			<div class="form-control">
+
+				<label for="phone">Phone number</label>
+				<input type="tel" placeholder="" id="phone" name="phone_number"/>
+				
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+				<small>Error message</small>
+			</div>
+			<div class="form-control">
+
+				<label for="email">	Email</label>
+				<input type="email" placeholder="" id="email" name="email" />
+				
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+				<small>Error message</small>
+			</div>
+			<div class="form-control">
+
+				<label for="date">Date of Birth</label>
+				<input type="date" placeholder="" id="date" name="birth_date" />
+				
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+				<small>Error message</small>
+			</div>
+			<div class="form-control">
+				<label for="username">Password</label>
+				<input type="password" placeholder="Password" id="password"/>
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+				<small>Error message</small> 
+			</div>
+			
+			
+			<div class="form-control">
+				<label for="username">Password Confirmation</label>
+				<input type="password" placeholder="Password two" id="password2" name="password"/>
+				<i class="fas fa-check-circle"></i>
+				<i class="fas fa-exclamation-circle"></i>
+				<small>Error message</small>
+			</div>
+
+			<button type="submit">Sign Up</button>
+		</form>
+	</section>
+</section>
+<footer>
+  <div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">© Engineer Manzp</div>
+</footer>
+
+</body>
+</html>

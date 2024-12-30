@@ -1,0 +1,46 @@
+﻿{% extends 'base.html' %}
+  
+{% block content %}
+  <main>
+    <h1>{{ greeting }} {{ tenant.user.last_name }}&nbsp;&nbsp;{{ tenant.user.first_name }} Welcome back To Propapp</h1>
+
+{% if leases %}
+<div class="section">
+  <h2>Lease Details</h2>
+  <table>
+    <tr>
+      <th>Unit</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Rent Amount</th>
+    </tr>
+    {% for lease in leases %}
+    <tr>
+      <td>{{ lease.unit }}</td>
+      <td>{{ lease.start_date }}</td>
+      <td>{{ lease.end_date }}</td>
+      <td>${{ lease.rent_amount }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% else %}
+<p>No lease details are available for you at the moment.</p>
+{% endif %}
+
+  </main>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.querySelector('.profile-menu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.addEventListener('click', function(event) {
+      const menu = document.querySelector('.profile-menu');
+      if (!menu.contains(event.target) && !event.target.matches('.profile-avatar')) {
+        menu.style.display = 'none';
+      }
+    });
+  </script>
+{% endblock %}

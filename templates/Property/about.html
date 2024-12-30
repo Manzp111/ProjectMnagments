@@ -1,0 +1,84 @@
+﻿{% extends 'home.html' %}
+{% load static %}
+{% block title %}About{% endblock %}
+
+{% block main %}
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    </style>
+</head>
+<body>
+     <header class="hero-section">
+        <h1>Welcome to the Property Management System</h1>
+        <p>Your solution for efficient property, unit, and lease management.</p>
+    </header>
+
+    <div class="container mt-5">
+        <div class="section-title">
+            <h2>About Our System</h2>
+            <p class="lead">We provide an easy-to-use platform for managing properties, tenants, and leases.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-box">
+                    <img src="{% static 'photos/download_1.jpeg' %}" alt="Property Listings">
+                    <h3>Property Listings</h3>
+                    <p>Manage various property types like apartments, houses, and commercial spaces.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-box">
+                    <img src="{% static 'photos/images.jpeg' %}" alt="Unit Management">
+                    <h3>Unit Management</h3>
+                    <p>Track unit availability, rent prices, and unit-specific details like bedrooms and bathrooms.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-box">
+                    <img src="{% static 'photos/images_1.jpeg' %}" alt="Tenant Information">
+                    <h3>Tenant Information</h3>
+                    <p>Store tenant details, track their rental history, and manage their contact information.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title mt-5">
+            <h2>Why Choose Us?</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ease of Use</h5>
+                        <p class="card-text">Our platform is designed to be simple and intuitive, saving you time and effort in managing your properties and tenants.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Comprehensive Management</h5>
+                        <p class="card-text">Manage everything from properties to lease agreements with ease. Our system offers full functionality for property managers and tenants alike.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+           <a href="{% url 'contact' %}"> <button class="btn btn-primary">Contact Us</button></a>
+            <div id="contact-info" style="display: none; margin-top: 20px;">
+             
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+{% endblock %}

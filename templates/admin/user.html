@@ -1,0 +1,56 @@
+﻿{% extends 'Property/admin.html' %}
+{% block title %}user_view{% endblock %}
+{% block content %}
+
+    <section>
+                <h1>list of user</h1>  
+            
+                    <div class="add-button-container">
+                      <a href="{% url 'add_user_admin' %}" class="add-button">
+                          <i class="fas fa-plus"></i> Add uUser
+                      </a>
+                 </div>
+                <table class="user-table">
+                  <thead>
+                    <tr>
+                      <th>User ID</th>
+                      <th>Username</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                       <th>First Name</th>
+                        <th>Last Name</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                 
+                  <tbody id="userTableBody">
+                     {% for user in users %}
+                    <tr>
+                      <td>{{ user.id }}</td>
+                      <td>{{ user.username }}</td>
+                      <td>{{user.email  }}</td>
+                      <td>{{ user.user_type }}</td>
+                      <td>{{ user.first_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        
+                        
+                          <td>
+               <a href="{% url 'edit_user' user.id %}">
+                   <button style="background-color: #2196F3">Edit</button>
+               </a>
+              
+                  <s href="{% url 'delete_user' user.id %}" type="submit" style="background-color: red">Delete</s>
+               
+           </td>
+                    
+                    
+                    
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                
+                
+            </section>
+    
+{% endblock %}

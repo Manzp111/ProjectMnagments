@@ -1,0 +1,50 @@
+﻿{% extends 'Property/landroad.html' %}
+{% block content %}
+    <!-- Properties Section -->
+        <div id="properties" style="margin-top: 40px;">
+            <h2>Your Properties</h2>
+            <div class="add-button-container">
+                <a href="{% url 'add_property' %}" class="add-button" style="margin-top: -40px;">+ Add Property</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property ID</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Type</th>
+                        <th>Rent</th>
+                        <th>Photo</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for property in properties %}
+                        <tr>
+                            <td>{{ property.id }}</td>
+                            <td>{{ property.name }}</td>
+                            <td>{{ property.address }}</td>
+                            <td>{{ property.property_type }}</td>
+                            <td>${{ property.rent }}</td>
+                            <td>
+                                {% if property.image %}
+                                    <img src="{{ property.image.url }}" alt="{{ property.name }}" style="height: 50px; width: 50px;">
+                                {% else %}
+                                    No Image
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'edit_property' property.id %}">Edit</a>
+                              <a href="{% url 'delete_property' property.id %}" class="btn btn-delete" style="color: red">Delete</a>
+                                 <a href="{% url 'property_images_landlord' property.id %}" class="btn btn-upload" style="color: #2196F3">view property image</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="7">No properties found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock %}

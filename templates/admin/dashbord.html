@@ -1,0 +1,68 @@
+﻿{% extends 'Property/admin.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .metrics {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .metric {
+            background: #e0f7fa;
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1;
+            margin: 0 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ greeting }}&nbsp;{{ user.username }}</h1>
+        
+        <div class="metrics">
+            <div class="metric">
+                <h2>Total Properties</h2>
+                <p>{{ total_properties }}</p>
+            </div>
+            <div class="metric">
+                <h2>Total Tenants</h2>
+                <p>{{ total_users }}</p>
+            </div>
+            <div class="metric">
+                <h2>Total Landlords</h2>
+                <p>{{ total_landlords }}</p>
+            </div>
+            <div class="metric">
+                <h2>Active Leases</h2>
+                <p>{{ active_leases }}</p>
+            </div>
+            <div class="metric">
+                <h2>Occupancy Rate (%)</h2>
+                <p>{{ occupancy_rate|floatformat:2 }}</p>
+            </div>
+            <div class="metric">
+                <h2>Total Revenue</h2>
+                <p>${{ total_revenue|floatformat:2 }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock  %}

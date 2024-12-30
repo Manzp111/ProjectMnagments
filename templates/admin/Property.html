@@ -1,0 +1,54 @@
+﻿{% extends 'Property/admin.html' %}
+
+{% block title %}
+viewPropertyAdmin
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1>Welcome to Property list</h1>
+    <div class="add-button-container">
+        <a href="{% url 'add_property_admin' %}" class="add-button">
+            <i class="fas fa-plus"></i> Add Property
+        </a>
+    </div>
+
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>Property ID</th>
+                <th>Name</th>
+                <th>ADDRESS</th>
+                <th>Property Type</th>
+                <th>RENT</th>
+                <th>PHOTO</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for properties in property %}
+            <tr>
+                <td>{{ properties.id }}</td>
+                <td>{{ properties.name }}</td>
+                <td>{{ properties.address }}</td>
+                <td>{{ properties.property_type }}</td>
+                <td>{{ properties.rent }}</td>
+                
+              <td>
+                  {% if properties.images.all %}
+                    <img src="{{ properties.images.all.0.image.url }}" alt="{{ properties.name }}" style="height: 35px; width: 35px;">
+                  {% endif %}
+                </td>
+                
+                <td>
+                    <a href="{% url 'edit_property' properties.id %}" class="btn btn-edit" style="color: midnightblue">Edit</a>
+                    <a href="{% url 'delete_property' properties.id %}" class="btn btn-delete" style="color: red">Delete</a>
+                   
+                    <a href="{% url 'property_images' properties.id %}" class="btn btn-upload" style="color: #2196F3">view property image</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

@@ -1,0 +1,127 @@
+﻿
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+VN+Guides&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif; /* Default font */
+    display: flex; /* Flexbox layout */
+    height: 100vh;
+    overflow: hidden; /* Prevents overflow */
+}
+.container1 {
+    display: flex; /* Flexbox for sidebar and content */
+    width: 100%;
+}
+aside {
+    background-color:midnightblue;
+    color: white;
+    height: 100vh;
+    padding: 20px;
+    width: 250px; /* Fixed width for sidebar */
+    position: fixed; /* Fixed sidebar */
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.content {
+    margin-left: 250px; /* Space for the fixed sidebar */
+    width: calc(100% - 250px); /* Width for the content area */
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in width */
+    background-color: #ecf0f1; /* Light background for content */
+    overflow-y: auto; /* Allow scrolling if needed */
+}
+.dashbordlinks {
+    display: flex;
+    flex-direction: column;
+}
+.dashbordlinks a {
+    text-decoration: none;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+.dashbordlinks a:hover {
+    background-color:white;
+    color: midnightblue; /* Darker background on hover */
+}
+.tabcontent {
+    margin-left: 2%;
+    padding: 20px;
+    border-radius: 5px;
+    background: white;
+    display: none; /* Hide by default */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+img {
+    border-radius: 50%;
+    height: 80%;
+    width: 30%;
+}
+.profilephoto {
+    display: flex;
+    width: 100%;
+    font-size: 20px;
+    gap: 10px;
+    align-items: center;
+}
+.profile {
+    display: flex;
+    width: 100%;
+    font-size: 20px;
+    gap: 10px;
+    align-items: center;
+}
+h1 {
+    color: #2c3e50; /* Main heading color */
+}
+@media screen and (max-width: 700px) {
+    aside {
+        width: 100%; /* Full width for sidebar */
+        height: auto; /* Adjust height for mobile */
+        position: relative; /* Position relative for mobile */
+    }
+    .content {
+        margin-left: 0; /* No margin for mobile */
+        width: 100%; /* Full width for content */
+    }
+}
+@media screen and (max-width: 400px) {
+    .dashbordlinks a {
+        font-size: 0.9em; /* Smaller font size for mobile */
+    }
+}
+.animate {
+    animation: animatezoom 0.6s;
+}
+@keyframes animatezoom {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+/* Table Styles */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.user-table th, .user-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.user-table th {
+    background-color: #3498db;
+    color: white;
+}
+
+
+.small{
+    background-color: midnightblue;
+    color: white;
+}
+

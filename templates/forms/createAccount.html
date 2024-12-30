@@ -1,0 +1,28 @@
+﻿{% extends 'home.html' %}
+{% load crispy_forms_tags %}
+
+{% block main %}
+    <div class="container">
+        
+            <div class="row justify-content-center">
+            <div class="col-md-6">
+            <form method="post">
+                {% if messages %}
+                   <ul>
+                     {% for message in messages %}
+                       <li>{{ message }}</li>
+                     {% endfor %}
+                   </ul>
+                 {% endif %}
+                 
+                {% csrf_token %}
+                
+                {{ form|crispy }}
+
+                <button class="view-btn" type="submit">Sign up</button>
+            </form>
+            </div>
+                
+        </div>
+    </div>
+{% endblock %}

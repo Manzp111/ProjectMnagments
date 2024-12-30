@@ -1,0 +1,52 @@
+﻿{% extends 'Property/admin.html' %}
+{% block title %}units_view{% endblock %}
+{% block content %}
+
+    
+            <section>
+                <h1>Welcome to List of Units</h1>
+            
+                    <div class="add-button-container">
+                      <a href="{% url 'add_unit_admin' %}" class="add-button">
+                          <i class="fas fa-plus"></i> Add Units
+                      </a>
+                 </div>
+                 <table class="user-table">
+                  <thead>
+                    <tr>
+                      <th>Unit ID</th>
+                      <th>Name of Property</th>
+                      <th>Unit count</th>
+                      <th>Number of Bedrooms</th>
+                       <th>Number of Bathrooms</th>
+                        <th>Is Available</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                 
+                  <tbody id="userTableBody">
+                     {% for unit in units %}
+                    <tr>
+                      <td>{{ unit.id }}</td>
+                      <td>{{ unit.property.name }}</td>
+                      <td>{{unit.unit_count  }}</td>
+                      <td>{{ unit.bedrooms }}</td>
+                      <td>{{ unit.bathrooms }}</td>
+                        <td>{{ unit.is_available}}</td>
+                        
+                                  <td>
+               <a href="{% url 'edit_unit' unit.id %}">
+                   <button style="background-color: #2196F3">Edit</button>
+               </a>
+              
+                  <a href="{% url 'delete_unit' unit.id %}" style="background-color: red">Delete</a>
+               
+           </td>
+                    
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                 </table>
+            </section>
+    
+{% endblock %}

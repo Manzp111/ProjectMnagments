@@ -1,0 +1,45 @@
+﻿{% extends 'home.html' %}
+{% load static %}
+{% block title %}Property{% endblock %}
+{% block main %}
+
+<section class="container-fluid">
+    {% if user.is_authenticated %}
+        <h2 style="margin-left: 30%">{{ greeting }}, {{ user.username }}!</h2>
+    {% else %}
+        <h2 style="margin-left: 30%"> {{ greeting }} Welcome back.</h2>
+    {% endif %}
+
+ <form method="GET" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="Search by location, type, bedrooms, or price..." value="{{ search }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+
+    <div class="row">
+        {% for item in properties %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
+                <div class="card">
+                   {% if item.images.all %}
+                    <img src="{{ item.images.all.0.image.url }}" alt="{{ item.name }}">
+                  {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title"><b>{{ item.name }}</b></h5>
+                        <p class="card-text"><strong>Location: {{ item.address }}</strong></p>
+                        <p class="card-text">Type: {{ item.property_type }}<br>Description: {{ item.description }}</p>
+                        <p class="card-text"><b>Price: ${{ item.rent }}</b></p>
+                        <a href="{% url 'property_detail' item.pk %}" class="btn btn-info view-btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <p>No properties Available for now</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

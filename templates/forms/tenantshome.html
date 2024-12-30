@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="container">
+  
+<h2>Tenant Dashboard</h2>
+<ul>
+    {% for message in messages %}
+        <li><strong>{{ message.sender.username }}</strong>: {{ message.content }} at {{ message.timestamp }}</li>
+    {% endfor %}
+</ul>
+<h3>Send Message to a Landlord</h3>
+<ul>
+    {% for landlord in landlords %}
+        <li><a href="{% url 'send_message' landlord.user.id %}">{{ landlord.user.username }}</a></li>
+    {% endfor %}
+</ul>
+
+</div>
+
+</body>
+</html>

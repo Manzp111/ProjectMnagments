@@ -1,0 +1,26 @@
+﻿{% extends 'Property/landroad.html' %}
+{% block content %}
+<section class="container">
+        <h1>Welcome, {{ request.user.username }}</h1>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="content-section">
+            <div class="box-info">
+                <div class="box">
+                    <h3>Total Properties</h3>
+                    <p>{{ properties.count }}</p>
+                </div>
+                <div class="box">
+                    <h3>Total Leases</h3>
+                    <p>{{ leases.count }}</p>
+                </div>
+                <div class="box">
+                    <h3>Total Rent Amount</h3>
+                    
+                    <p>${{ total_rent }}</p>
+                </div>
+            </div>
+        </div>
+</section>
+    
+{% endblock %}

@@ -1,0 +1,46 @@
+﻿{% extends 'Property/admin.html' %}
+{% block title %}view_lease{% endblock %}
+
+{% block content %}
+ <section>
+                <h1>Welcome to Lease</h1>
+                 <table class="user-table">
+                  <thead>
+                    <tr>
+                      <th>Lease ID</th>
+                      <th> Tenant Name</th>
+                      <th>Landroad Name</th>
+                      <th>start date </th>
+                       <th>End DATE</th>
+                        <th>Rent Amount</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                 
+                  <tbody id="userTableBody">
+                     {% for lease in lease %}
+                    <tr>
+                      <td>{{ lease.id }}</td>
+                      <td>{{ lease.tenant.user.username }}</td>
+                      <td>{{lease.landroad  }}</td>
+                      <td>{{ lease.start_date }}</td>
+                      <td>{{ lease.end_date }}</td>
+                        <td>{{ lease.rent_amount}}</td>
+                      
+                                <td>
+               <a href="{% url 'edit_lease' lease.id %}">
+                   <button style="background-color: #2196F3">Edit</button>
+               </a>
+             
+                  <a href="{% url 'delete_lease' lease.id %}" style="background-color: red">Delete</a>
+             
+           </td>
+                    
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                 </table>
+            </section>
+        
+
+{% endblock %}

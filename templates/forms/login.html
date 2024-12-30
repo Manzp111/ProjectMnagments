@@ -1,0 +1,42 @@
+﻿{% extends 'home.html' %}
+
+{% load crispy_forms_tags %}
+{% block title %}Login{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <header style="height: 100%; background-color:#2196F3">
+                    <h3 class="col-11" style="margin-left: 12%">Welcome to the Property<br> Management System</h3>
+                    <p style="margin-left: 8%">Your solution for efficient property, unit, and lease management.</p>
+                </header>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- Messages section -->
+               {% if messages %}
+                  <div class="alert alert-danger">
+                      {% for message in messages %}
+                          <p>{{ message }}</p>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  <p>Enter correct username and password.</p>  <!-- Debugging line -->
+              {% endif %}
+
+                <!-- Form section -->
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="view-btn" style="margin-left: 12%">Login</button>
+                   
+                </form>
+            <a href="{% url 'password_reset' %}">Forgot password</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer_class %}{% endblock %}

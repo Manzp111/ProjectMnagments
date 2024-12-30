@@ -1,0 +1,71 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Create Maintenance Request{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+    h2 {
+        color: #333;
+    }
+    .form-container {
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: auto;
+    }
+    label {
+        display: block;
+        margin: 10px 0 5px;
+    }
+    select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    button {
+        background-color: #5cb85c;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    button:hover {
+        background-color: #4cae4c;
+    }
+    .message {
+        color: #d9534f;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Create Maintenance Request</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="property_id">Select Property:</label>
+        <select name="property_id" id="property_id" required>
+            {% for property in properties %}
+                <option value="{{ property.id }}">{{ property.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" rows="5" required placeholder="Describe the maintenance issue..."></textarea>
+
+        <button type="submit">Submit Request</button>
+    </form>
+</div>
+{% endblock %}

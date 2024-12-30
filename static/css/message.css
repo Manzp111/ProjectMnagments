@@ -1,0 +1,61 @@
+﻿ body {
+            background-color: #f8f9fa;
+        }
+        .message-board {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .message {
+            margin-bottom: 10px;
+            clear: both;
+        }
+        .message.left {
+            text-align: left;
+        }
+        .message.right {
+            text-align: right;
+        }
+        .message-header {
+            font-weight: bold;
+        }
+        .message-content {
+            margin-top: 5px;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .message.left .message-content {
+            background-color: #e9ecef;
+            margin-right: auto;
+        }
+        .message.right .message-content {
+            background-color: #007bff;
+            color: white;
+            margin-left: auto;
+        }
+        .form-control {
+            border-radius: 20px;
+        }
+        .btn-send {
+            border-radius: 20px;
+        }
+         .top-header {
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
+        .top-header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        .top-header h2 {
+            font-size: 1.5rem;
+            margin: 0;
+            font-weight: 300;
+        }

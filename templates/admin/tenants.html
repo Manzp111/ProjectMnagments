@@ -1,0 +1,50 @@
+﻿{% extends 'Property/admin.html' %}
+{% block title %}Tenants{% endblock %}
+
+{% block content %}
+
+ <section>
+                <h1>Welcome to Tenants</h1>
+             <div class="add-button-container">
+                      <a href="{% url 'add_tenants_admin' %}" class="add-button">
+                          <i class="fas fa-plus"></i> Add Tenant
+                      </a>
+                 </div>
+               <table class="user-table">
+                  <thead>
+                    <tr>
+                      <th>Tenant ID</th>
+                      <th>Name of Tenant</th>
+                      <th>E-mail</th>
+                      <th>Phone Number</th>
+                      
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                 
+                  <tbody id="userTableBody">
+                     {% for tenant in tenants %}
+                    <tr>
+                      <td>{{ tenant.id }}</td>
+                      <td>{{ tenant.user.username }}</td>
+                      <td>{{tenant.user.email }}</td>
+                      <td>{{ tenant.phone_number }}</td>
+                      
+                         <td>
+               <a href="{% url 'edit_tenant' tenant.id %}">
+                   <button style="background-color: #2196F3">Edit</button>
+               </a>
+             
+                  <a href="{% url 'delete_tenant' tenant.id %}" style="background-color: red">Delete</a>
+               
+           </td>
+                    
+                    
+                    
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                 </table>
+            </section>
+        
+{% endblock %}

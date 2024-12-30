@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for user in users %}
+  <div class="user-item">
+    <p>{{ user.username }}</p>
+    {% if user.last_message %}
+      <p>Last message: {{ user.last_message.text }}</p>
+      <p>Status: {% if user.last_message.read %}Read{% else %}Unread{% endif %}</p>
+    {% endif %}
+  </div>
+{% empty %}
+  <p>No users found.</p>
+{% endfor %}
+
+</body>
+</html>{% for user in users %}
+    <li class="user-item">
+        {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" class="user-avatar">
+        {% else %}
+            <img src="https://via.placeholder.com/50" alt="{{ user.username }}" class="user-avatar">
+        {% endif %}
+        <div class="user-details">
+            <h5>{{ user.username }}</h5>
+            {% if user.last_message %}
+                <small class="last-message {% if not user.last_message.read %}unread{% endif %}">
+                    <strong>{{ user.last_message.content }}</strong>
+                </small>
+            {% endif %}
+        </div>
+        <a href="{% url 'send_message_tenants' receiver_id=user.id %}" class="chat-button">Chat</a>
+    </li>
+{% empty %}
+    <p>No users found.</p>
+{% endfor %}

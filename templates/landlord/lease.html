@@ -1,0 +1,35 @@
+﻿{% extends 'Property/landroad.html' %}
+{% block content %}
+      <div>
+            <h2>Your Leases</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tenant</th>
+                        <th>Property Address</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Monthly Rent</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lease in leases %}
+                        <tr>
+                            <td>{{ lease.tenant.user.username }}</td>
+                            <td>{{ lease.unit.property.address }}</td>
+                            <td>{{ lease.start_date }}</td>
+                            <td>{{ lease.end_date }}</td>
+                            <td>${{ lease.rent_amount }}</td>
+                          
+
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5">No leases found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+﻿<!-- In templates/Property/property_images.html -->
+
+{% extends 'Property/landroad.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Images for {{ property.name }}</h2>
+        
+        <div class="row">
+            {% for image in images %}
+                <div class="col-md-4 mb-3 text-center">
+                    <div class="image-item">
+                        <img src="{{ image.image.url }}" alt="Property Image" class="img-fluid img-thumbnail rounded" style="max-height: 450px;">
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12 text-center">
+                    <p>No images available for this property.</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center mt-4">
+             <a href="{% url 'upload_images_landlord' property.id %}" class="btn btn-primary">Add More Images</a>
+            <a href="{% url 'property_images_landlord' property.id %}" class="btn btn-primary">Back to Property List</a>
+        </div>
+    </div>
+{% endblock %}

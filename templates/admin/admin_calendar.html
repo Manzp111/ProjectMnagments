@@ -1,0 +1,152 @@
+﻿{% extends 'home.html' %}
+
+{% block title %}Availability Calendar{% endblock %}
+
+{% block main %}
+   
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Availability Calendar for {{ unit.property.name }}</h2>
+    
+    <p class="text-center mb-4">
+        This calendar shows the availability of units for rent. 
+        <span style="color: #2196F3">Unavailable dates are marked in orange.</span> 
+        Hover over any unavailable date to see the specific date range.
+    </p>
+
+    <div id="calendar" class="calendar-wrapper mb-4"></div>
+      <div class="text-center">
+        <a href="{% url 'property_detail' unit.property.id %}" class="btn view-btn">Back to Property Details</a>
+    </div>
+   
+</div>
+
+<style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: auto;
+    }
+
+    h2 {
+        font-size: 28px;
+        color: #007bff;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    /* Calendar Styles */
+    .calendar-wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+    }
+
+    .fc-event {
+        background-color: #ffcc00; /* Unavailable dates color */
+        border: none;
+        color: #ffffff;
+        padding: 8px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .fc-event:hover {
+        background-color: #ffb300; /* Darker shade on hover */
+        cursor: pointer;
+    }
+
+    .fc-title {
+        font-weight: bold;
+    }
+
+    .fc-header-toolbar {
+        margin-bottom: 20px;
+        text-align: center; /* Center the header buttons */
+    }
+
+    .fc-button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px; /* Increased padding */
+        margin: 0 5px; /* Margin between buttons */
+        font-size: 16px; /* Increased font size */
+        transition: background-color 0.3s; /* Smooth transition */
+    }
+
+    .fc-button:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+        cursor: pointer;
+    }
+
+    .fc-day-number {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    /* Button Styles */
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        transition: background-color 0.3s; /* Smooth transition */
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Darker gray on hover */
+        color: #fff;
+    }
+
+    /* Additional Styles for Responsiveness */
+    @media (max-width: 768px) {
+        .calendar-wrapper {
+            width: 100%; /* Full width on smaller screens */
+        }
+
+        h2 {
+            font-size: 24px; /* Smaller title on mobile */
+        }
+
+        p {
+            font-size: 14px; /* Smaller text on mobile */
+        }
+    }
+</style>
+
+<script>
+    $(document).ready(function() {
+        var unitId = {{ unit.id }};
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            events: '/unit/' + unitId + '/availability-data/',
+            editable: false,
+            eventLimit: true,
+            eventRender: function(event, element) {
+                element.attr('title', 
+                    'Unavailable from ' + 
+                    moment(event.start).format('MMM D') + 
+                    ' to ' + moment(event.end).format('MMM D')
+                );
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,128 @@
+﻿ body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #007BFF;
+        padding: 15px;
+        color: white;
+    }
+
+    .navbar-brand img {
+        height: 40px;
+    }
+
+    .navbar-links {
+        display: flex;
+        gap: 20px;
+    }
+
+    .navbar-links a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .profile-dropdown {
+        position: relative;
+    }
+
+    .profile-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .profile-menu {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: white;
+        border: 1px solid #ddd;
+        list-style-type: none;
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    .profile-menu li {
+        padding: 5px 10px;
+    }
+
+    .profile-menu li a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    main {
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    .section {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #007BFF;
+        color: white;
+    }
+
+    .button {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .maintenance-request {
+        margin-top: 20px;
+    }
+
+    .request-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .request-form input, .request-form textarea {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .navbar-links {
+            display: none;
+        }
+    }
