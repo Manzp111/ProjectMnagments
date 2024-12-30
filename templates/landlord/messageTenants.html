@@ -126,11 +126,11 @@
 <body>
 
 <section class="container col-6">
-
-      <header class="top-header">
-        <h1>Property Management System</h1>
-        <h2>Select a User to Chat</h2>
-    </header>
+{##}
+{#      <header class="top-header">#}
+{#        <h1>Property Management System</h1>#}
+{#        <h2>Select a User to Chat</h2>#}
+{#    </header>#}
 
     <form method="GET" action="{% url 'select_receiver_landlord' %}" class="search-form">
         <input type="text" name="search" placeholder="Search by username..." value="{{ request.GET.search }}">
