@@ -50,10 +50,10 @@ def base_view(request):
 
 def contact_view(request):
     if request.method=='POST':
-        form=Contact_User_form(request.POST)
+        form=ContactForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('home')
+        return redirect('Property')
     form=ContactForm()
     return render(request,'Property/contact.html' ,{'contact_forms':form})
 
@@ -941,3 +941,12 @@ def get_availability_data(request, unit_id):
         })
 
     return JsonResponse(events, safe=False)
+def payment_view(request):
+    payments=Payment.objects.all()
+    return render(request, 'admin/payment.html', {'payments': payments})
+
+# def payment_landlord_view(request,id):
+#
+#         landlord = get_object_or_404(user=request.user)  # Get the logged-in landlord
+#         payments = Payment.objects.filter(id=landlord)  # Get payments for the landlord
+#         return render(request, 'landlord/payment_landlord.html', {'payments': payments})

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
   <title>Tenant Dashboard</title>
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
     
   <style>
     body {
@@ -205,6 +206,52 @@
             padding: 8px;
         }
     }
+    .auth {
+            display: flex;
+            align-items: center;
+        }
+        .profile-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: white;
+
+            color: midnightblue;
+            border: 2px solid #007bff; /* Optional: to highlight the profile image */
+        }
+        .profile-menu {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 50px; /* Adjust based on your layout */
+            right: 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+        .profile-menu li {
+            padding: 10px 20px;
+        }
+        .profile-menu li a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+        .profile-menu li:hover {
+            background-color: #f1f1f1;
+        }
+        .profile-menu.show {
+            display: block; /* Show dropdown when it has the 'show' class */
+        }
+       .bg-primary{
+           text-align: center;
+           justify-content: center;
+           font-size: 180%;
+       }
+    </style>
 
   </style>
 </head>
@@ -225,13 +272,31 @@
       <a href="{% url 'tenant_view_requests' %}">Maintenance Requests</a>
      
     </div>
-    <div class="profile-dropdown">
-      <img class="profile-avatar" src="{% static 'photos/images.jpeg' %}" alt="Profile" onclick="toggleMenu()">
-      <ul class="profile-menu">
-        <li><a href="{% url 'profile' %}">My Profile</a></li>
-        <li><a href="#">Settings</a></li>
-        <li><a href="{% url 'login' %}">Logout</a></li>
-      </ul>
+    <div class="auth">
+
+        {% if user.is_authenticated %}
+            <!-- Profile Dropdown for Authenticated Users -->
+            <div class="position-relative">
+                {% if user.avatar %}
+                    <!-- Show profile image if exists -->
+                    <img class="profile-avatar" src="{{ user.avatar.url }}" alt="Profile" onclick="toggleMenu()">
+                {% else %}
+                    <!-- Show initials if profile image doesn't exist -->
+                    <div class="profile-avatar bg-primary text-white d-flex justify-content-center align-items-center" onclick="toggleMenu()">
+                        <small class="primary">{{ user.first_name|slice:":1"|upper }}{{ user.last_name|slice:":1"|upper }}</small>
+                    </div>
+                {% endif %}
+                <!-- Dropdown Menu -->
+                <ul class="profile-menu" id="profileMenu">
+                    <li><a href="{% url 'profile' %}">My Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                </ul>
+            </div>
+        {% else %}
+            <!-- Login and Sign Up Buttons for Non-Authenticated Users -->
+            <a href="{% url 'login' %}" class="btn btn-primary me-2">Log in</a>
+            <a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a>
+        {% endif %}
     </div>
   </nav>
 

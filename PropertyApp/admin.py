@@ -45,5 +45,8 @@ class PropertyImageAdmin(admin.ModelAdmin):
 @admin.register(MaintenanceRequest)
 class MaintenanceRequestAdmin(admin.ModelAdmin):
     list_display = ('id', 'property', 'tenant', 'description', 'status')
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ('id','user','property', 'amount','created_at', 'status')
 
 

@@ -99,6 +99,8 @@ urlpatterns=[
     path('unit/<int:unit_id>/availability-data/', views.get_availability_data, name='get_availability_data'),
     path('property/<int:property_id>/images/', views.property_images, name='property_images'),
     path('property/<int:property_id>/images/landlord/', views.property_images_landlord, name='property_images_landlord'),
+    path('payment/admin/',views.payment_view, name='payment_admin'),
+    # path('payment/landlord/<int:id>', views.payment_landlord_view, name='landlord_payment_landlord'),
 
 
 

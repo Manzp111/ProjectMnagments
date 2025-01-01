@@ -72,6 +72,7 @@
              
         </div>
        <div class="name">{{ user.first_name }}&nbsp;{{ user.last_name }}</div>
+
     </div>
    </div>
 
@@ -110,13 +111,14 @@
                    <span class="material-icons-sharp">person</span>
                      <small>Landlord</small>
                 </a>
-{#                <a href="#">#}
-{#                    #}
-{#                    <span class="material-icons-sharp">#}
-{#                        calendar_month#}
-{#                     </span>#}
-{#                    <small>Calendar</small>#}
-{#                </a>#}
+
+                <a href="{% url 'payment_admin' %}">
+
+                    <span class="material-icons-sharp">
+                        calendar_month
+                     </span>
+                    <small>Payments</small>
+                </a>
                 <a href="{% url 'login' %}">
                     <span class="material-icons-sharp">logout</span>
                     <small>Log out</small>

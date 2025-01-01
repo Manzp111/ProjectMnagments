@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'PropertyApp',
     'debug_toolbar',
     'core',
+
     'crispy_forms',
     'crispy_bootstrap4',
     # 'drf_spectacular_sidecar',
